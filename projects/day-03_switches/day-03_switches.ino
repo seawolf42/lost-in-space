@@ -1,5 +1,9 @@
+// CONFIG
+
 int LED = 12;
 int SWITCH1 = 2;
+
+// SETUP AND MAIN LOOP
 
 void setup() {
   pinMode(LED, OUTPUT);

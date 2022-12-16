@@ -63,3 +63,5 @@ Open VS Code and configure Arduino ([detailed instructions](https://maker.pro/ar
 1. click "select serial port" along the bottom margin and select the port that matches the `/dev/tty.usbserial-XXXXXX` name format
 
 Now you should be able to use the "verify" and "upload" functions in VS Code to talk to the board.
+
+**Note:** VS code will not know how to find any external libraries you download; you will want to add the following to your `.vscode/arduino.json` file: `"includePath": ["${HOME}/Documents/Arduino/libraries"],`. You can use Arduino IDE to download the libraries and then reference them from projects in VS Code using `#exclude`.

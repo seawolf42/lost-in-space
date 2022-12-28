@@ -20,13 +20,12 @@ byte colPins[COLS] = {6, 7, 8, 9};
 
 Keypad keypad = Keypad(makeKeymap(buttons), rowPins, colPins, ROWS, COLS);
 
-
 struct KeyInfo {
   char symbol;
   int tone;
 };
 
-KeyInfo keys[ROWS * COLS] = {
+const KeyInfo keys[ROWS * COLS] = {
   KeyInfo{'1', 31},
   KeyInfo{'2', 93},
   KeyInfo{'3', 147},

@@ -6,7 +6,7 @@
 const byte ROWS = 4;
 const byte COLS = 4;
 
-char buttons[ROWS][COLS] = {
+const char buttons[ROWS][COLS] = {
   {'1', '2', '3', 'A'},  // 1st row
   {'4', '5', '6', 'B'},  // 2nd row
   {'7', '8', '9', 'C'},  // 3rd row

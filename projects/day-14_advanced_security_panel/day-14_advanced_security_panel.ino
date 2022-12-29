@@ -3,10 +3,10 @@
 
 // CONFIG
 
-const int PIN_BUZZER = 8;
-const int PIN_RED = 11;
-const int PIN_GREEN = 10;
-const int PIN_BLUE = 9;
+#define PIN_BUZZER 8
+#define PIN_RED 11
+#define PIN_GREEN 10
+#define PIN_BLUE 9
 
 const byte ROWS = 4;
 const byte COLS = 4;
@@ -73,12 +73,14 @@ void tryUnlock() {
   Serial.print("enter current password: ");
   char attempted[PASSWORD_LENGTH] = {0, 0, 0, 0};
   readPassword(attempted);
+
   int result = compare(attempted, currentPassword);
-  if (result == 0) {
-    onSuccess("UNLOCKED");
-  } else {
+  if (result < 0) {
     onError("INCORRECT PASSWORD");
+  } else {
+    onSuccess("UNLOCKED");
   }
+
   displayColor(&WHITE);
 }
 
@@ -88,7 +90,7 @@ void trySet() {
   char current[PASSWORD_LENGTH] = {0, 0, 0, 0};
   readPassword(current);
   int result = compare(current, currentPassword);
-  if (result != 0) {
+  if (result < 0) {
     onError("PASSWORD UNCHANGED");
     return;
   }
@@ -129,7 +131,7 @@ void readPassword(char* buffer) {
 int compare(char* test, char* expected) {
   for (int i = 0; i < PASSWORD_LENGTH; ++i) {
     if (test[i] != expected[i]) {
-      return 1;
+      return -1;
     }
   }
   return 0;

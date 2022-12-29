@@ -1,8 +1,8 @@
 // CONFIG
 
-int PIN_RED = 11;
-int PIN_GREEN = 10;
-int PIN_BLUE = 9;
+#define PIN_RED 11
+#define PIN_GREEN 10
+#define PIN_BLUE 9
 
 // DATA
 

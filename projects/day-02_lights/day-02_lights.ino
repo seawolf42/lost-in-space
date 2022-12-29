@@ -1,13 +1,13 @@
-const int LIGHT = 12;
+#define PIN_LIGHT 12
 
 void setup() {
-  pinMode(LIGHT, OUTPUT);
-  digitalWrite(LIGHT, HIGH);
+  pinMode(PIN_LIGHT, OUTPUT);
+  digitalWrite(PIN_LIGHT, HIGH);
 }
 
 void loop() {
-  digitalWrite(LIGHT, HIGH);
+  digitalWrite(PIN_LIGHT, HIGH);
   delay(200);
-  digitalWrite(LIGHT, LOW);
+  digitalWrite(PIN_LIGHT, LOW);
   delay(1800);
 }

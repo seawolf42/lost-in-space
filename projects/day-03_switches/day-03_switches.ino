@@ -1,21 +1,21 @@
 // CONFIG
 
-int LED = 12;
-int SWITCH1 = 2;
+#define PIN_LED 12
+#define PIN_SWITCH1 2
 
 // SETUP AND MAIN LOOP
 
 void setup() {
-  pinMode(LED, OUTPUT);
-  pinMode(SWITCH1, INPUT);
-  digitalWrite(LED, HIGH);
+  pinMode(PIN_LED, OUTPUT);
+  pinMode(PIN_SWITCH1, INPUT);
+  digitalWrite(PIN_LED, HIGH);
 }
 
 void loop() {
-  if (digitalRead(SWITCH1) == HIGH) {
-    digitalWrite(LED, HIGH);
+  if (digitalRead(PIN_SWITCH1) == HIGH) {
+    digitalWrite(PIN_LED, HIGH);
   } else {
-    digitalWrite(LED, LOW);
+    digitalWrite(PIN_LED, LOW);
   }
   delay(100);
 }

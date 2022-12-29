@@ -1,10 +1,10 @@
 // CONFIG
 
-int SENSOR = A0;
+#define PIN_SENSOR A0
 
-unsigned int BATTERY_CAPACITY = 50000;
-unsigned int WAIT = 100;
-unsigned int DEPLETION_RATE = 1350;
+const unsigned int BATTERY_CAPACITY = 50000;
+const unsigned int WAIT = 100;
+const unsigned int DEPLETION_RATE = 1350;
 
 // STATE
 
@@ -27,7 +27,7 @@ void loop() {
 
   wait(WAIT);
 
-  int sensorValue = analogRead(SENSOR);
+  int sensorValue = analogRead(PIN_SENSOR);
   batteryLevel += sensorValue;
 }
 

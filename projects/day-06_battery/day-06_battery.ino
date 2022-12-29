@@ -1,21 +1,21 @@
 // CONFIG
 
-int SENSOR = A0;
-int LIGHT = LED_BUILTIN;
+#define PIN_SENSOR A0
+#define PIN_LIGHT LED_BUILTIN
 
 // SETUP AND MAIN LOOP
 
 void setup() {
   Serial.begin(115200);
-  pinMode(LIGHT, OUTPUT);
+  pinMode(PIN_LIGHT, OUTPUT);
 
 }
 
 void loop() {
-  int sensorValue = analogRead(SENSOR);
+  int sensorValue = analogRead(PIN_SENSOR);
   Serial.println(sensorValue);
   // lightAtThreshold(LIGHT, sensorValue, 30);
-  lightForDuration(LIGHT, sensorValue);
+  lightForDuration(PIN_LIGHT, sensorValue);
   delay(100);
 }
 

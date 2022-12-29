@@ -1,26 +1,26 @@
 // CONFIG
 
-int SWITCH1 = 2;
-int LIGHT1 = 10;
+#define PIN_SWITCH1 2
+#define PIN_LIGHT1 10
 
-int SWITCH2 = 3;
-int LIGHT2 = 11;
+#define PIN_SWITCH2 3
+#define PIN_LIGHT2 11
 
-int SWITCH3 = 4;
-int LIGHT3 = 12;
+#define PIN_SWITCH3 4
+#define PIN_LIGHT3 12
 
 // SETUP AND MAIN LOOP
 
 void setup() {
-  setupLightCircuit(SWITCH1, LIGHT1);
-  setupLightCircuit(SWITCH2, LIGHT2);
-  setupLightCircuit(SWITCH3, LIGHT3);
+  setupLightCircuit(PIN_SWITCH1, PIN_LIGHT1);
+  setupLightCircuit(PIN_SWITCH2, PIN_LIGHT2);
+  setupLightCircuit(PIN_SWITCH3, PIN_LIGHT3);
 }
 
 void loop() {
-  setLight(LIGHT1, SWITCH1);
-  setLight(LIGHT2, SWITCH2);
-  setLight(LIGHT3, SWITCH3);
+  setLight(PIN_LIGHT1, PIN_SWITCH1);
+  setLight(PIN_LIGHT2, PIN_SWITCH2);
+  setLight(PIN_LIGHT3, PIN_SWITCH3);
   delay(100);
 }
 

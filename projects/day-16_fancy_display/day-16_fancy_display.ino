@@ -1,6 +1,6 @@
 #include <TM1637Display.h>
 
-// NOTE: requires external .zip download
+// NOTE: requires external library: ../../assets/7SEG-TM1637-HERO.zip
 
 // CONFIG
 

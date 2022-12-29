@@ -6,19 +6,19 @@
 const byte ROWS = 4;
 const byte COLS = 4;
 
-char buttons[ROWS][COLS] = {
-  {1, 2, 3, 4},  // 1st row
-  {5, 6, 7, 8},  // 2nd row
-  {9, 10, 11, 12},  // 3rd row
-  {13, 14, 15, 16}   // 4th row
+char BUTTONS[ROWS][COLS] = {
+  {1, 2, 3, 4},
+  {5, 6, 7, 8},
+  {9, 10, 11, 12},
+  {13, 14, 15, 16}
 };
 
-byte rowPins[ROWS] = {5, 4, 3, 2};
-byte colPins[COLS] = {6, 7, 8, 9};
+byte ROW_PINS[ROWS] = {5, 4, 3, 2};
+byte COL_PINS[COLS] = {6, 7, 8, 9};
 
 // DATA
 
-Keypad keypad = Keypad(makeKeymap(buttons), rowPins, colPins, ROWS, COLS);
+Keypad keypad = Keypad(makeKeymap(BUTTONS), ROW_PINS, COL_PINS, ROWS, COLS);
 
 struct KeyInfo {
   char symbol;
@@ -44,14 +44,14 @@ const KeyInfo keys[ROWS * COLS] = {
   KeyInfo{'D', 4978},
 };
 
-int BUZZER = 10;
+int PIN_BUZZER = 10;
 
 // SETUP AND MAIN LOOP
 
 void setup() {
   Serial.begin(115200);
 }
- 
+
 void loop() {
   char result = keypad.getKey();
 
@@ -64,8 +64,8 @@ void loop() {
     Serial.print(", frequency: ");
     Serial.println(key->tone);
 
-    tone(BUZZER, key->tone, 500);
+    tone(PIN_BUZZER, key->tone, 500);
     delay(500);
-    noTone(BUZZER);
+    noTone(PIN_BUZZER);
   }
 }

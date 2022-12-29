@@ -24,7 +24,7 @@ void loop() {
     reset();
   }
   printBatteryPercentage();
-  
+
   wait(WAIT);
 
   int sensorValue = analogRead(SENSOR);

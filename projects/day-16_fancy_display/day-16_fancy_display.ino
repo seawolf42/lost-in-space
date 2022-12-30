@@ -5,7 +5,7 @@
 // CONFIG
 
 #define PIN_CLOCK 6
-#define DISPLAY_IO 5
+#define PIN_DISPLAY_IO 5
 
 // DATA
 
@@ -37,7 +37,7 @@ const uint8_t ALL_ON[] = {CHAR_ALL, CHAR_ALL, CHAR_ALL, CHAR_ALL};
 const uint8_t BLANK[] = {CHAR_NONE, CHAR_NONE, CHAR_NONE, CHAR_NONE};
 const uint8_t DONE[] = {CHAR_d, CHAR_o, CHAR_n, CHAR_E};
 
-TM1637Display displayPad = TM1637Display(PIN_CLOCK, DISPLAY_IO);
+TM1637Display displayPad = TM1637Display(PIN_CLOCK, PIN_DISPLAY_IO);
 
 // SETUP AND MAIN LOOP
 

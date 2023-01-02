@@ -4,13 +4,13 @@
 
 // CONFIG
 
-#define PIN_DISPLAY_CLOCK 6
-#define PIN_DISPLAY_IO 5
-
 #define PIN_ENCODER_CLOCK 2
 #define PIN_ENCODER_IO 3
 
-// DATA
+#define PIN_DISPLAY_CLOCK 6
+#define PIN_DISPLAY_IO 5
+
+#define PIN_BUZZER 10
 
 const uint8_t CHAR_NONE = 0x00;
 const uint8_t CHAR_ALL = 0xff;
@@ -24,12 +24,24 @@ const uint8_t ALL_ON[] = {CHAR_ALL, CHAR_ALL, CHAR_ALL, CHAR_ALL};
 const uint8_t BLANK[] = {CHAR_NONE, CHAR_NONE, CHAR_NONE, CHAR_NONE};
 const uint8_t DONE[] = {CHAR_d, CHAR_o, CHAR_n, CHAR_E};
 
+// DATA
+
 TM1637Display displayPad = TM1637Display(PIN_DISPLAY_CLOCK, PIN_DISPLAY_IO);
 
 volatile int stepCounter = 0;
 volatile bool clockLatch = true;
 
 int lastStep = 0;
+
+const int toneFreq = 0;
+
+#define SECRET1 3
+#define SECRET2 6
+#define SECRET3 9
+
+#define SECRET1_TONE 23
+#define SECRET2_TONE 353
+#define SECRET3_TONE 1688
 
 // SETUP AND MAIN LOOP
 
@@ -69,23 +81,22 @@ void loop()
 
     switch (lastStep)
     {
-    case 50:
-    case 75:
-        displayPad.setSegments(ALL_ON);
-        delay(500);
-        displayPad.showNumberDec(lastStep);
-        delay(500);
+    case SECRET1:
+        playTone(SECRET1_TONE);
+        displayPad.clear();
         break;
-    case 100:
-        displayPad.setSegments(DONE);
-        delay(500);
+    case SECRET2:
+        playTone(SECRET2_TONE);
         displayPad.clear();
-        delay(500);
-        displayPad.setSegments(DONE);
-        delay(500);
+        break;
+    case SECRET3:
+        playTone(SECRET3_TONE);
         displayPad.clear();
-        delay(500);
+        delay(1000);
+        displayPad.setSegments(DONE);
+        delay(1000);
         stepCounter = 0;
+        break;
     default:
         break;
     }
@@ -120,4 +131,12 @@ void updateEncoderIO()
         return;
     }
     clockLatch = false;
+}
+
+void playTone(const int frequency)
+{
+    Serial.print("play tone: ");
+    Serial.println(frequency);
+    tone(PIN_BUZZER, frequency, 250);
+    delay(500);
 }

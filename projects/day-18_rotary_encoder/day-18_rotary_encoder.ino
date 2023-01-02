@@ -26,9 +26,10 @@ const uint8_t DONE[] = {CHAR_d, CHAR_o, CHAR_n, CHAR_E};
 
 TM1637Display displayPad = TM1637Display(PIN_DISPLAY_CLOCK, PIN_DISPLAY_IO);
 
-int stepCounter = 0;
+volatile int stepCounter = 0;
+volatile bool clockLatch = true;
+
 int lastStep = 0;
-bool clockLatch = true;
 
 // SETUP AND MAIN LOOP
 
@@ -43,7 +44,7 @@ void setup()
 
     Serial.begin(115200);
 
-    attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_CLOCK), updateEncoderClock, RISING);
+    attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_CLOCK), updateEncoderClock, CHANGE);
     attachInterrupt(digitalPinToInterrupt(PIN_ENCODER_IO), updateEncoderIO, CHANGE);
 
     Serial.println("setup complete");
@@ -54,8 +55,9 @@ void loop()
     displayPad.showNumberDec(stepCounter);
     delay(50);
 
-    const int delta = stepCounter - lastStep;
-    lastStep = stepCounter;
+    const int currentStep = stepCounter;
+    const int delta = currentStep - lastStep;
+    lastStep = currentStep;
 
     if (delta)
     {
